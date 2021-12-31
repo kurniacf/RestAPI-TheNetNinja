@@ -8,7 +8,12 @@ router.get("/profile", function(req, res){
 
 // POST
 router.post("/profile", function(req, res){
-    res.send({type: "POST"});
+    console.log(req.body);
+    res.send({
+        type: "POST",
+        name: req.body.name,
+        city: req.body.city
+    });
 });
 
 // PUT

@@ -3,6 +3,9 @@ const express = require("express");
 // Set Express
 const app = express();
 
+app.use(express.json());
+//app.use(express.urlencoded());
+
 // Route
 app.use("/api", require("./routes/api"));
 
