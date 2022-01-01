@@ -17,7 +17,15 @@ router.post("/profile", function(req, res, next){
 
 // PUT
 router.put("/profile/:id", function(req, res, next){
-    res.send({type: "PUT"});
+    Profile.findByIdAndUpdate({
+        _id: req.params.id
+    }, req.body).then(function(profile){
+        Profile.findOne({
+            _id: req.params.id
+        }).then(function(profile){
+            res.send(profile);
+        });
+    });
 });
 
 // DELETE
