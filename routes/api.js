@@ -22,7 +22,11 @@ router.put("/profile/:id", function(req, res, next){
 
 // DELETE
 router.delete("/profile/:id", function(req, res, next){
-    res.send({type: "DELETE"});
+    Profile.findByIdAndRemove({
+        _id: req.params.id
+    }).then(function(profile){
+        res.send(profile);
+    });
 });
 
 
