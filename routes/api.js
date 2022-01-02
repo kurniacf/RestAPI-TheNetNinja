@@ -4,7 +4,21 @@ const router = express.Router();
 
 // GET
 router.get("/profile", function(req, res, next){
-    res.send({type: "GET"});
+    // Profile.find({}).then(function(profiles){
+    //     res.send(profiles);
+    // });
+    Profile.geoNear(
+        {
+            type: "Point",
+            coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+        },
+        {
+            maxDistance:100000, 
+            spherical: true
+        }
+    ).then(function(profiles){
+        res.send(profiles);
+    });
 });
 
 // POST

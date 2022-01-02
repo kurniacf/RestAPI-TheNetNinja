@@ -8,6 +8,7 @@ const app = express();
 mongoose.connect("mongodb://localhost/tutorialrest");
 mongoose.Promise = global.Promise;
 
+app.use(express.static("public"));
 app.use(express.json());
 //app.use(express.urlencoded());
 
@@ -16,6 +17,7 @@ app.use("/api", require("./routes/api"));
 
 // Error handling middleware
 app.use(function(err, req, res, next){  
+    console.log(err);
     res.status(422).send({
         error: err.message
     });
